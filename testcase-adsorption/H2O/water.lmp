@@ -1,0 +1,48 @@
+# LAMMPS input file
+# Rigid frame and rigid TIP4P molecule with explicit 4-th point
+
+units real
+boundary p p p
+atom_style full
+bond_style harmonic
+angle_style harmonic
+pair_style lj/cut/coul/long 17
+kspace_style ewald 1.0e-5
+kspace_modify kmax/ewald 17 17 17 gewald 0.1622
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 0.833
+
+read_data water.data
+change_box all x final -50 50 y final -50 50 z final -50 50
+
+include water.inc
+group H2O type 1 2 3
+
+molecule h2omol water.mol
+fix fgcmc H2O gcmc 1 100 0 0 29494 300.0 -2.75 1 pressure 0.5 mol h2omol full_energy
+
+variable A atom type==1
+group A dynamic all var A
+variable nH2O equal count(A)
+
+thermo_style custom step temp pe evdwl ecoul elong v_nH2O
+
+# fix mynve all rigid/nve molecule
+ 
+fix myat1 all ave/time 1 1 1 v_nH2O file number.dat
+variable pe equal pe
+variable evdwl equal evdwl
+variable ecoul equal ecoul
+variable elong equal elong
+fix myat2 all ave/time 1 1 1 v_pe v_evdwl v_ecoul v_elong file energy.dat
+
+fix myat3 all ave/time 1 1 1 f_fgcmc[1] f_fgcmc[2] f_fgcmc[3] &
+    f_fgcmc[4] f_fgcmc[5] f_fgcmc[6] f_fgcmc[7] f_fgcmc[8] file gcmc.dat
+
+thermo 1
+
+dump mydmp all atom 1 dump.lammpstrj
+
+run 100
+
+reset_atoms mol all
+write_data water.data

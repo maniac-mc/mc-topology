@@ -1,0 +1,46 @@
+# LAMMPS input file
+
+units real
+boundary p p p
+atom_style full
+bond_style harmonic
+pair_style lj/cut/coul/long 17
+kspace_style ewald 1.0e-5
+kspace_modify kmax/ewald 6 6 6 gewald 0.1622
+
+read_data dipole.data
+include dipole.inc
+
+# change_box all xy final -20.0 xz final -20.0 yz final 20.0
+ 
+group dipole type 1 2
+
+molecule dipole dipole.mol
+
+# create_atoms 0 random 3 3245 NULL mol dipole 4585 overlap 2.0 maxtry 50
+fix fgcmc dipole gcmc 1 100 0 0 29494 300.0 -2.75 1 pressure 50 mol dipole full_energy
+
+variable A atom type==1
+group A dynamic all var A
+variable nDipole equal count(A)
+
+thermo_style custom step pe evdwl ecoul elong v_nDipole
+
+fix myat1 all ave/time 1 1 1 v_nDipole file number.dat
+variable pe equal pe
+variable evdwl equal evdwl
+variable ecoul equal ecoul
+variable elong equal elong
+fix myat2 all ave/time 1 1 1 v_pe v_evdwl v_ecoul v_elong file energy.dat
+
+fix myat3 all ave/time 1 1 1 f_fgcmc[1] f_fgcmc[2] f_fgcmc[3] &
+    f_fgcmc[4] f_fgcmc[5] f_fgcmc[6] f_fgcmc[7] f_fgcmc[8] file gcmc.dat
+
+thermo 1
+
+dump mydmp all atom 1 dump.lammpstrj
+
+run 100
+
+reset_atoms mol all
+write_data dipole.data nocoeff

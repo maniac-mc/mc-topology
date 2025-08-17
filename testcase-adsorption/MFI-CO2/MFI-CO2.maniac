@@ -1,0 +1,38 @@
+# Input for maniac program
+
+# Generic parameters
+nb_block 10                     # number of MC block
+nb_step 100                     # Number of MC step
+temperature	298                 # Temperature in Kelvin
+seed 78182                      # Optional - Initial seed for the random number generator
+
+# Electrostatic interactions
+ewald_tolerance 1e-6            # Tolerange long-range ewald
+real_space_cutoff 12.5          # Cut-off electrostatic
+
+# Monte carlo move
+translation_step 1              # Translational displacement (angstrom)
+rotation_step_angle 0.685       # Rotational move (radian)
+recalibrate_moves true          # Enable automatic recalibration of move steps (true/false)
+translation_proba 1.0           # Probability of attempting a translation move
+rotation_proba 1.0              # Probability of attempting a rotation move
+big_move_proba 0.4              # Probability of attempting a big move
+insertion_deletion_proba 0.2    # Probability of attempting an insertion or a deletion
+
+# Define residues composition and activity
+begin_residue
+  name CO2
+  state actif
+  fugacity 0.1
+  types 3 4
+  names Oco2 Cco2
+  nb-atoms 3
+end_residue
+
+begin_residue
+  name mof
+  state inactif
+  types 1 2
+  names O Si
+  nb-atoms 2304
+end_residue
