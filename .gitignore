@@ -10,7 +10,9 @@ bin/*
 # Ignore produced files
 **/outputs/*
 **/*.dat
+**/log.lammps
 !testcase-adsorption/H2O/number.dat
+!testcase-adsorption/H2O/log.lammps
 
 # Ignore backup and temporary files (optional but useful)
 *~
@@ -23,7 +25,6 @@ dependencies.d
 **/__pycache__
 
 # LAMMPS stuffs
-**/log.lammps
 **/*.lammpstrj
 !topology-gallery/zif8-water-adsorption/vmd/*.lammpstrj
 
