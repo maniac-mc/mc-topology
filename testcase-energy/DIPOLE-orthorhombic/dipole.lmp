@@ -6,7 +6,7 @@ atom_style full
 bond_style harmonic
 pair_style lj/cut/coul/long 17
 kspace_style ewald 1.0e-5
-kspace_modify kmax/ewald 6 6 6 gewald 0.1622
+kspace_modify kmax/ewald 8 7 6 gewald 0.1622
 
 read_data dipole.data
 include dipole.inc
