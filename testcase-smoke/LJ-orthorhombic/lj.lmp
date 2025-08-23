@@ -7,7 +7,7 @@ bond_style harmonic
 angle_style harmonic
 pair_style lj/cut/coul/long 17
 kspace_style ewald 1.0e-5
-kspace_modify kmax/ewald 6 6 6 gewald 0.1622
+kspace_modify kmax/ewald 8 6 6 gewald 0.1622
 
 read_data lj.data
 include lj.inc
@@ -26,3 +26,4 @@ thermo_style custom step etotal evdwl ecoul elong
 run 0
 write_dump all atom lj.lammpstrj
 write_data lj.data nocoeff
+
