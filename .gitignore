@@ -13,6 +13,8 @@ bin/*
 **/log.lammps
 !testcase-adsorption/H2O/number.dat
 !testcase-adsorption/H2O/log.lammps
+!testcase-adsorption/DIPOLE-orthorhombic/number.dat
+!testcase-adsorption/DIPOLE-orthorhombic/log.lammps
 
 # Ignore backup and temporary files (optional but useful)
 *~

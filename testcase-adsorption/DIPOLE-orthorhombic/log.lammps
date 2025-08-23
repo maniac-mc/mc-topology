@@ -1,0 +1,272 @@
+LAMMPS (22 Jul 2025)
+# LAMMPS input file
+
+units real
+boundary p p p
+atom_style full
+bond_style harmonic
+pair_style lj/cut/coul/long 17
+kspace_style ewald 1.0e-5
+kspace_modify kmax/ewald 6 6 6 gewald 0.1622
+
+read_data dipole.data
+Reading data file ...
+  triclinic box = (-20 -20 -20) to (20 20 20) with tilt (-20 -20 20)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (../domain.cpp:221)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  142 atoms
+  reading velocities ...
+  142 velocities
+  scanning bonds ...
+  1 = max bonds/atom
+  triclinic box = (-20 -20 -20) to (20 20 20) with tilt (-20 -20 20)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (../domain.cpp:221)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  71 bonds
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0       
+  special bond factors coul:  0        0        0       
+     1 = max # of 1-2 neighbors
+     0 = max # of 1-3 neighbors
+     0 = max # of 1-4 neighbors
+     1 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.006 seconds
+include dipole.inc
+# LAMMPS Lennard-Jones pair coefficients
+# epsilon (kcal/mol), sigma (Angstrom)
+
+pair_coeff 1 1 0.100000 3.000000  # A-A
+pair_coeff 1 2 0.070711 2.449490  # A-B
+pair_coeff 2 2 0.050000 2.000000  # B-B
+
+bond_coeff 1 0 2
+
+# change_box all xy final -20.0 xz final -20.0 yz final 20.0
+
+group dipole type 1 2
+142 atoms in group dipole
+
+molecule dipole dipole.mol
+Read molecule template dipole:
+# LAMMPS molecule File
+  1 molecules
+  0 fragments
+  0 bodies
+  2 atoms with max type 2
+  1 bonds with max type 1
+  0 angles with max type 0
+  0 dihedrals with max type 0
+  0 impropers with max type 0
+
+# create_atoms 0 random 3 3245 NULL mol dipole 4585 overlap 2.0 maxtry 50
+fix fgcmc dipole gcmc 1 100 0 0 29494 300.0 -2.75 1 pressure 50 mol dipole full_energy
+
+variable A atom type==1
+group A dynamic all var A
+dynamic group A defined
+variable nDipole equal count(A)
+
+thermo_style custom step pe evdwl ecoul elong v_nDipole
+
+fix myat1 all ave/time 1 1 1 v_nDipole file number.dat
+variable pe equal pe
+variable evdwl equal evdwl
+variable ecoul equal ecoul
+variable elong equal elong
+fix myat2 all ave/time 1 1 1 v_pe v_evdwl v_ecoul v_elong file energy.dat
+
+fix myat3 all ave/time 1 1 1 f_fgcmc[1] f_fgcmc[2] f_fgcmc[3]     f_fgcmc[4] f_fgcmc[5] f_fgcmc[6] f_fgcmc[7] f_fgcmc[8] file gcmc.dat
+
+thermo 1
+
+dump mydmp all atom 1 dump.lammpstrj
+
+run 100
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (../verlet.cpp:60)
+Ewald initialization ...
+  using 12-bit tables for long-range coulomb
+  G vector (1/distance) = 0.1622
+  estimated absolute RMS force accuracy = 4.1073515e-05
+  estimated relative force accuracy = 1.2369167e-07
+  KSpace vectors: actual max1d max3d = 448 6 1098
+                  kxmax kymax kzmax  = 6 6 6
+Generated 0 of 1 mixed pair_coeff terms from geometric mixing rule
+0 atoms in group FixGCMC:gcmc_exclusion_group:fgcmc
+0 atoms in group FixGCMC:rotation_gas_atoms:fgcmc
+WARNING: Neighbor exclusions used with KSpace solver may give inconsistent Coulombic energies (../neighbor.cpp:671)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 19
+  ghost atom cutoff = 19
+  binsize = 9.5, bins = 9 7 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton/tri
+      stencil: half/bin/3d/tri
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 16.54 | 16.54 | 16.54 Mbytes
+   Step         PotEng         E_vdwl         E_coul         E_long       v_nDipole   
+         0  -2.8812361     -1.2645192      40.097413     -41.71413       71           
+         1  -4.4940997     -3.0831374      49.241728     -50.65269       86           
+         2  -4.410316      -3.413686       49.825194     -50.821824      86           
+         3  -4.5499532     -3.0634781      49.234904     -50.721379      86           
+         4  -6.819193      -4.2724777      53.165592     -55.712307      95           
+         5  -4.3271208     -2.0786439      43.783953     -46.03243       78           
+         6  -6.9120826     -2.8225248      50.551865     -54.641423      92           
+         7  -4.6699381     -2.4603737      43.041172     -45.250737      77           
+         8  -3.6865416     -1.8634436      37.777828     -39.600926      67           
+         9  -3.5150451     -2.2192456      43.048734     -44.344534      75           
+        10  -3.8401307     -2.1665646      42.110163     -43.783729      74           
+        11  -3.5455329     -2.0586596      39.585221     -41.072095      70           
+        12  -4.4723934     -2.4956586      45.154607     -47.131342      80           
+        13  -4.7106903     -3.2465014      49.67564      -51.139829      87           
+        14  -3.7002909     -2.9202747      45.904214     -46.68423       79           
+        15  -2.2800442     -1.7447632      46.47083      -47.006111      80           
+        16  -5.4361699     -3.6368688      45.749319     -47.54862       81           
+        17  -7.78212       -4.5018407      51.074436     -54.354715      92           
+        18  -5.0113739     -3.1023854      41.904719     -43.813708      74           
+        19  -3.1886687     -1.8305844      44.581841     -45.939925      78           
+        20  -2.6160081     -1.9236669      49.044796     -49.737137      85           
+        21  -2.4569245     -2.4777611      53.127991     -53.107154      90           
+        22  -0.86824475    -1.1836454      44.520189     -44.204788      75           
+        23  -1.3533969     -1.7497985      44.508251     -44.111849      76           
+        24  -2.3865156     -1.6002542      36.640483     -37.426745      64           
+        25  -3.7542794     -1.9625995      39.821959     -41.613639      71           
+        26  -4.9973168     -2.733194       43.198695     -45.462818      77           
+        27  -2.8742839     -1.6433774      40.881058     -42.111965      71           
+        28  -2.2012363     -0.95515639     37.714405     -38.960485      66           
+        29  -1.8149116     -0.76027814     38.004195     -39.058828      66           
+        30  -2.8075232     -1.5256823      42.422844     -43.704685      74           
+        31  -2.1470222     -1.22023        37.527499     -38.454291      65           
+        32  -2.3063804     -1.6642108      40.185512     -40.827682      69           
+        33  -2.342004      -1.9768074      38.930864     -39.29606       67           
+        34  -4.382523      -2.735434       38.93464      -40.581729      69           
+        35  -2.8268599     -1.8160817      42.432791     -43.443569      74           
+        36  -4.59785       -2.640228       42.309755     -44.267377      75           
+        37  -4.3436859     -2.5112995      42.48755      -44.319936      75           
+        38  -3.6714108     -2.2088108      46.445446     -47.908046      82           
+        39  -4.6013792     -2.6171089      43.231507     -45.215777      77           
+        40  -4.1495772     -2.4794663      45.617273     -47.287384      80           
+        41  -3.5425519     -2.3517161      46.769671     -47.960507      81           
+        42  -3.1974325     -2.8026898      50.008924     -50.403666      86           
+        43  -3.5968387     -1.8361445      42.987497     -44.748191      76           
+        44  -3.0284312     -1.4426669      41.865412     -43.451176      74           
+        45  -1.9561241     -1.0316179      43.408825     -44.333331      76           
+        46  -2.8859932     -2.5382469      45.822599     -46.170346      79           
+        47  -3.6498934     -1.7078723      47.96098      -49.903001      85           
+        48  -6.0112097     -2.909547       44.889694     -47.991357      81           
+        49  -4.8899926     -1.9518646      44.94237      -47.880498      81           
+        50  -6.0840613     -2.8428859      46.490091     -49.731266      84           
+        51  -5.3948259     -3.1922765      50.873084     -53.075634      90           
+        52  -5.356261      -4.274068       53.148374     -54.230567      92           
+        53  -6.4552076     -4.1579105      52.58423      -54.881527      93           
+        54  -4.2672494     -1.9480619      41.514079     -43.833266      74           
+        55  -4.1975403     -1.8715635      43.666307     -45.992284      78           
+        56  -5.9618041     -2.4552967      47.936273     -51.442781      87           
+        57  -4.973455      -1.9525562      46.562232     -49.583131      84           
+        58  -4.8128302     -1.713409       42.284135     -45.383556      77           
+        59  -3.7911528     -1.1090793      47.960917     -50.642991      86           
+        60  -1.7405421     -0.44287013     36.526826     -37.824498      64           
+        61  -0.77805558    -0.32157955     31.891494     -32.34797       55           
+        62  -2.3662981     -1.5951226      40.667747     -41.438922      70           
+        63  -3.1761441     -2.1920657      42.762094     -43.746172      74           
+        64  -3.8171287     -1.968803       39.985667     -41.833993      71           
+        65  -3.9250754     -0.51329381     38.457166     -41.868947      71           
+        66  -4.9174227     -1.9334497      45.111736     -48.095709      81           
+        67  -4.7044817     -2.5140276      45.617054     -47.807508      81           
+        68  -4.1134218     -2.9681793      48.53232      -49.677563      84           
+        69  -3.0280494     -1.6251861      43.836612     -45.239475      77           
+        70  -4.2832424     -2.7139533      52.097133     -53.666422      91           
+        71  -3.4785239     -2.3849639      53.58379      -54.67735       93           
+        72  -2.046547      -1.8348698      47.324394     -47.536071      81           
+        73  -2.8149038     -1.7218845      45.574424     -46.667443      79           
+        74  -2.2196502     -2.4298896      45.548577     -45.338338      77           
+        75  -2.7687428     -2.2194464      41.892126     -42.441423      72           
+        76  -3.1105865     -2.175254       44.40087      -45.336202      77           
+        77  -2.0405248     -1.9356327      39.16132      -39.266212      67           
+        78  -5.1485788     -2.4530305      32.002191     -34.697739      59           
+        79  -3.802878      -2.6362299      36.488962     -37.65561       64           
+        80  -3.9814186     -3.2134267      42.35119      -43.119182      74           
+        81  -5.1516856     -3.1146624      50.470671     -52.507694      89           
+        82  -4.1095726     -2.0732378      43.206148     -45.242483      77           
+        83  -2.7926539     -1.5690162      48.006902     -49.23054       84           
+        84  -3.5740553     -1.5662913      37.433926     -39.44169       67           
+        85  -2.7012402     -1.0019206      36.541042     -38.240361      65           
+        86  -1.4731366     -0.8990619      34.196767     -34.770841      59           
+        87  -1.3683037     -0.8416173      31.986373     -32.513059      55           
+        88  -0.89201695    -1.5351609      37.714196     -37.071052      63           
+        89  -2.0349746     -2.2526066      41.466673     -41.249041      70           
+        90  -2.6930316     -2.3553755      44.462847     -44.800503      76           
+        91  -1.8180091     -1.7086209      40.971201     -41.080589      70           
+        92  -2.8669453     -1.941464       43.812212     -44.737694      76           
+        93  -2.0683684     -1.3180057      40.298074     -41.048436      70           
+        94  -2.9106408     -2.2881089      42.258051     -42.880582      73           
+        95  -3.2630598     -1.7116309      40.80702      -42.358449      72           
+        96  -2.9762801     -1.775122       35.972101     -37.173259      63           
+        97  -1.446426      -0.69584762     32.131029     -32.881607      56           
+        98  -0.93579948    -0.83028293     39.764461     -39.869977      68           
+        99  -3.4233473     -1.9619551      42.72165      -44.183042      75           
+       100  -3.7777142     -1.7658362      43.068511     -45.080389      76           
+Loop time of 7.22638 on 1 procs for 100 steps with 152 atoms
+
+Performance: 1.196 ns/day, 20.073 hours/ns, 13.838 timesteps/s, 2.103 katom-step/s
+99.9% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0061743  | 0.0061743  | 0.0061743  |   0.0 |  0.09
+Bond    | 6.1082e-05 | 6.1082e-05 | 6.1082e-05 |   0.0 |  0.00
+Kspace  | 0.02001    | 0.02001    | 0.02001    |   0.0 |  0.28
+Neigh   | 0.041394   | 0.041394   | 0.041394   |   0.0 |  0.57
+Comm    | 0.0014356  | 0.0014356  | 0.0014356  |   0.0 |  0.02
+Output  | 0.0068939  | 0.0068939  | 0.0068939  |   0.0 |  0.10
+Modify  | 7.1502     | 7.1502     | 7.1502     |   0.0 | 98.95
+Other   |            | 0.0001631  |            |       |  0.00
+
+Nlocal:            152 ave         152 max         152 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           1138 ave        1138 max        1138 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           5105 ave        5105 max        5105 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 5105
+Ave neighs/atom = 33.585526
+Ave special neighs/atom = 1
+Neighbor list builds = 10200
+Dangerous builds = 0
+
+reset_atoms mol all
+Resetting molecule IDs ...
+Ewald initialization ...
+  using 12-bit tables for long-range coulomb
+  G vector (1/distance) = 0.1622
+  estimated absolute RMS force accuracy = 4.2495162e-05
+  estimated relative force accuracy = 1.2797292e-07
+  KSpace vectors: actual max1d max3d = 448 6 1098
+                  kxmax kymax kzmax  = 6 6 6
+Generated 0 of 1 mixed pair_coeff terms from geometric mixing rule
+0 atoms in group FixGCMC:rotation_gas_atoms:fgcmc
+WARNING: Neighbor exclusions used with KSpace solver may give inconsistent Coulombic energies (../neighbor.cpp:671)
+  number of new molecule IDs = 76
+  reset_atoms mol CPU = 0.000 seconds
+write_data dipole.data nocoeff
+System init for write_data ...
+Ewald initialization ...
+  using 12-bit tables for long-range coulomb
+  G vector (1/distance) = 0.1622
+  estimated absolute RMS force accuracy = 4.2495162e-05
+  estimated relative force accuracy = 1.2797292e-07
+  KSpace vectors: actual max1d max3d = 448 6 1098
+                  kxmax kymax kzmax  = 6 6 6
+Generated 0 of 1 mixed pair_coeff terms from geometric mixing rule
+0 atoms in group FixGCMC:rotation_gas_atoms:fgcmc
+WARNING: Neighbor exclusions used with KSpace solver may give inconsistent Coulombic energies (../neighbor.cpp:671)
+Total wall time: 0:00:07
