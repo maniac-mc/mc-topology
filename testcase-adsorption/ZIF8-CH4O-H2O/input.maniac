@@ -1,8 +1,8 @@
 # Input for maniac program
 
 # Generic parameters
-nb_block 200                      # number of MC block
-nb_step 1000                        # Number of MC step
+nb_block 1000                      # number of MC block
+nb_step 1                        # Number of MC step
 temperature	300                 # Temperature in Kelvin
 
 # Electrostatic interactions
@@ -16,7 +16,7 @@ recalibrate_moves true          # Enable automatic recalibration of move steps (
 
 translation_proba 0.4           # Probability of attempting a translation move
 rotation_proba 0.4              # Probability of attempting a rotation move
-big_move_proba 0.4              # Probability of attempting a big move
+big_move_proba 0.0              # Probability of attempting a big move
 insertion_deletion_proba 0.2    # Probability of attempting an insertion or a deletion
 
 # Define residues composition and activity
@@ -33,7 +33,7 @@ begin_residue
   state actif
   fugacity 50
   types 12 13 14
-  names OW MW HW 
+  names OW HW MW
   nb-atoms 4
 end_residue
 
@@ -42,6 +42,6 @@ begin_residue
   state actif
   fugacity 50
   types 8 9 10 11
-  names HO OH CH Me
+  names CH OH HO Me
   nb-atoms 4
 end_residue
