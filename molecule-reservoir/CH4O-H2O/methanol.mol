@@ -1,0 +1,44 @@
+# MeOH-4P : methanol molecule variant of OPLS/2016 UA rigidforce field named
+# J. Chem. Theory Comput. 2018, 14, 2526−2537
+# Carbon values are taken from OPLS/2016 The Journal of Chemical Physics 145, 034508 (2016); doi: 10.1063/1.4958320
+# Bond lengths: rOH = 0.9450 A, rOMe = 1.43 A, rOM = -0.037 A
+# Bond angle: HO-OH-CH = 108.50°
+# The positive direction of the M site is along CH3-O-H,
+# but the M site is in the negative direction.
+
+4 atoms
+3 bonds
+3 angles
+
+Coords
+
+1 -0.9450 0.0000 0.0000     # HO along negative x-axis (bond length 0.9450 A from O)
+2 0.0000 0.0000 0.0000      # O at origin
+3 0.4400 1.3600 0.0000      # C forming 108.50° angle with HO–O
+4 0.02067 -0.0292 0.0306     # M site along HO-O-C bisector rotated ny 1.78°, lOM = 0.037 Å
+
+Types
+
+1 10 
+2 9
+3 8
+4 11
+
+Charges
+
+1 +0.4998
+2 +0.0000
+3 +0.1546
+4 -0.6544
+
+Bonds
+
+1 8 1 2
+2 9 2 3
+3 10 2 4
+
+Angles
+
+1 12 3 2 1
+2 13 4 2 3
+3 13 4 2 1
