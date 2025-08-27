@@ -34,10 +34,10 @@ pair_modify mix arithmetic
 kspace_style ewald 1e-5
 
 molecule methanol methanol.mol
-create_atoms 0 random 500 27910 NULL mol methanol 454756 overlap 3.2 maxtry 50
+create_atoms 0 random 3 27910 NULL mol methanol 454756 overlap 3.2 maxtry 50
 
 molecule h2o h2o.mol
-create_atoms 0 random 500 87910 NULL mol h2o 754733 overlap 3.2 maxtry 50
+create_atoms 0 random 4 87910 NULL mol h2o 754733 overlap 3.2 maxtry 50
 
 mass 1 12.011 # C1
 mass 2 12.011 # C2
