@@ -34,6 +34,6 @@ begin_residue
   state actif
   fugacity 50
   types 12 13 14
-  names OW HW MW
+  names HW OW MW
   nb-atoms 4
 end_residue
