@@ -2,7 +2,7 @@
 
 # Generic parameters
 nb_block 1000                      # number of MC block
-nb_step 1                        # Number of MC step
+nb_step 100                        # Number of MC step
 temperature	300                 # Temperature in Kelvin
 
 # Electrostatic interactions
