@@ -39,17 +39,17 @@ include parameters.inc
 fix mynvt1 zif8 nvt temp ${T} ${T} ${tauT}
 fix mynvt2 mixture rigid/nvt molecule temp ${T} ${T} ${tauT}
 
-dump mydmp all atom 100 mixture-in-zif8.lammpstrj
+dump mydmp all atom 100 dump.lammpstrj
 thermo 100
 
 run 5000
 
 unfix mynvt1
 unfix mynvt2
-write_data mixture-in-zif8.data
+write_data topology.data
 
 fix mynvt zif8 nvt temp ${T} ${T} ${tauT}
 fix mynpt mixture rigid/npt molecule temp ${T} ${T} ${tauT} aniso ${p} ${p} ${tauP}
 
 run 5000
-write_data mixture-in-zif8.data
+write_data topology.data
