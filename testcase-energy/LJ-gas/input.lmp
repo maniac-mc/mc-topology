@@ -9,8 +9,8 @@ pair_style lj/cut/coul/long 17
 kspace_style ewald 1.0e-5
 kspace_modify kmax/ewald 6 6 6 gewald 0.1622
 
-read_data lj.data
-include lj.inc
+read_data topology.data
+include parameters.inc
 
 # create_atoms 1 random 25 3245 NULL overlap 2.0 maxtry 50
 # create_atoms 2 random 25 1245 NULL overlap 2.0 maxtry 50
@@ -25,4 +25,4 @@ thermo_style custom step etotal evdwl ecoul elong
 
 run 0
 write_dump all atom lj.lammpstrj
-write_data lj.data nocoeff
+write_data topology.data nocoeff
