@@ -11,10 +11,10 @@ kspace_style ewald 1.0e-5
 kspace_modify kmax/ewald 17 17 17 gewald 0.1622
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 0.833
 
-read_data water.data
+read_data topology.data
 change_box all x final -50 50 y final -50 50 z final -50 50
 
-include water.inc
+include parameters.inc
 group H2O type 1 2 3
 
 molecule h2omol water.mol
@@ -45,4 +45,4 @@ dump mydmp all atom 1 dump.lammpstrj
 run 100
 
 reset_atoms mol all
-write_data water.data
+write_data topology.data

@@ -12,7 +12,7 @@ kspace_style ewald 1.0e-5
 kspace_modify kmax/ewald 17 17 17 gewald 0.1622
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 0.833
 
-read_data water.data
+read_data topology.data
 Reading data file ...
   orthogonal box = (-50 -50 -50) to (50 50 50)
   1 by 1 by 1 MPI processor grid
@@ -38,14 +38,14 @@ Finding 1-2 1-3 1-4 neighbors ...
      2 = max # of 1-4 neighbors
      3 = max # of special neighbors
   special bonds CPU = 0.000 seconds
-  read_data CPU = 0.009 seconds
+  read_data CPU = 0.004 seconds
 change_box all x final -50 50 y final -50 50 z final -50 50
 Changing box ...
   orthogonal box = (-50 -50 -50) to (50 50 50)
   orthogonal box = (-50 -50 -50) to (50 50 50)
   orthogonal box = (-50 -50 -50) to (50 50 50)
 
-include water.inc
+include parameters.inc
 # LAMMPS Lennard-Jones pair coefficients
 # epsilon (kcal/mol), sigma (Angstrom)
 
@@ -228,22 +228,22 @@ Per MPI rank memory allocation (min/avg/max) = 36.93 | 36.93 | 36.93 Mbytes
         98   80.953765     -8.1349692      0.96239549     1004.5344     -1013.6317      18           
         99   69.12579      -6.8218509      1.0206478      893.13947     -900.98197      16           
        100   63.408256     -6.9982984      1.0164676      780.31475     -788.32952      14           
-Loop time of 17.1542 on 1 procs for 100 steps with 56 atoms
+Loop time of 18.4355 on 1 procs for 100 steps with 56 atoms
 
-Performance: 0.504 ns/day, 47.651 hours/ns, 5.829 timesteps/s, 326.450 atom-step/s
+Performance: 0.469 ns/day, 51.210 hours/ns, 5.424 timesteps/s, 303.762 atom-step/s
 100.0% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.00035977 | 0.00035977 | 0.00035977 |   0.0 |  0.00
-Bond    | 0.0002257  | 0.0002257  | 0.0002257  |   0.0 |  0.00
-Kspace  | 0.16591    | 0.16591    | 0.16591    |   0.0 |  0.97
-Neigh   | 0.00093981 | 0.00093981 | 0.00093981 |   0.0 |  0.01
-Comm    | 0.00028945 | 0.00028945 | 0.00028945 |   0.0 |  0.00
-Output  | 0.0043232  | 0.0043232  | 0.0043232  |   0.0 |  0.03
-Modify  | 16.982     | 16.982     | 16.982     |   0.0 | 99.00
-Other   |            | 0.0001704  |            |       |  0.00
+Pair    | 0.00035715 | 0.00035715 | 0.00035715 |   0.0 |  0.00
+Bond    | 0.00021791 | 0.00021791 | 0.00021791 |   0.0 |  0.00
+Kspace  | 0.17806    | 0.17806    | 0.17806    |   0.0 |  0.97
+Neigh   | 0.00098265 | 0.00098265 | 0.00098265 |   0.0 |  0.01
+Comm    | 0.00030187 | 0.00030187 | 0.00030187 |   0.0 |  0.00
+Output  | 0.0041605  | 0.0041605  | 0.0041605  |   0.0 |  0.02
+Modify  | 18.251     | 18.251     | 18.251     |   0.0 | 99.00
+Other   |            | 0.0001328  |            |       |  0.00
 
 Nlocal:             56 ave          56 max          56 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -271,8 +271,8 @@ Generated 0 of 3 mixed pair_coeff terms from geometric mixing rule
 0 atoms in group FixGCMC:rotation_gas_atoms:fgcmc
 WARNING: Neighbor exclusions used with KSpace solver may give inconsistent Coulombic energies (../neighbor.cpp:671)
   number of new molecule IDs = 14
-  reset_atoms mol CPU = 0.010 seconds
-write_data water.data
+  reset_atoms mol CPU = 0.000 seconds
+write_data topology.data
 System init for write_data ...
 Ewald initialization ...
   using 12-bit tables for long-range coulomb
@@ -285,4 +285,4 @@ Generated 0 of 3 mixed pair_coeff terms from geometric mixing rule
 0 atoms in group FixGCMC:rotation_gas_atoms:fgcmc
 WARNING: Neighbor exclusions used with KSpace solver may give inconsistent Coulombic energies (../neighbor.cpp:671)
 WARNING: Not all mixed pair coeffs generated from mixing. Use write_data with 'pair ij' option to store all pair coeffs. (../write_data.cpp:364)
-Total wall time: 0:00:17
+Total wall time: 0:00:18
