@@ -52,4 +52,4 @@ fix mynvt zif8 nvt temp ${T} ${T} ${tauT}
 fix mynpt mixture rigid/npt molecule temp ${T} ${T} ${tauT} aniso ${p} ${p} ${tauP}
 
 run 5000
-write_data topology.data
+write_data topology_lmp.data
