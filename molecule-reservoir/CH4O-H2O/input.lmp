@@ -69,4 +69,4 @@ thermo 100
 
 run 1000
 
-write_data mixture.data
+write_data topology.data
