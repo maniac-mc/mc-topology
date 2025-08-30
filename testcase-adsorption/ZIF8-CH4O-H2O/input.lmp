@@ -18,10 +18,10 @@ boundary p p p
 read_data zif8.data
 
 molecule ch4o ch4o.mol
-create_atoms 0 random 200 27910 NULL mol ch4o 454756 overlap 2.5 maxtry 50
+create_atoms 0 random 5 27910 NULL mol ch4o 454756 overlap 2.5 maxtry 50
 
 molecule h2o h2o.mol
-create_atoms 0 random 500 87910 NULL mol h2o 754733 overlap 2.0 maxtry 200
+create_atoms 0 random 5 87910 NULL mol h2o 754733 overlap 2.0 maxtry 200
 
 group zif8 type 1 2 3 4 5 6 7
 group ch4o type 8 9 10 11
