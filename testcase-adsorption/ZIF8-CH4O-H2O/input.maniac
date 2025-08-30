@@ -34,7 +34,7 @@ begin_residue
   fugacity 50
   types 8 9 10 11
   names HO HC CH OH
-  nb-atoms 4
+  nb-atoms 6
 end_residue
 
 begin_residue
