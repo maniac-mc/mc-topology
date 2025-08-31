@@ -38,5 +38,5 @@ dump mydmp all atom 10 mixture-in-zif8.lammpstrj
 thermo 10
 
 run 500
-write_data topology.data
+write_data topology.data nocoeff nofix
 
