@@ -1,0 +1,20 @@
+# LAMMPS Input File (License CC BY 4.0)
+
+# For the Ar liquid, the parameters ε/k and σ were determined as 120.0 K and 0.34 nm, respectively -- 10.1007/s10450-008-9121-1
+variable sigma equal 3.4 # A
+variable epsilon equal 0.238 # 120 K 0.001987 kcal/mol K = 0.238 kcal/mol
+
+# The mass m was 6.636 × 10−26 kg and the reduced temperature T ∗ = kT /ε(Ar) = 0.7 -- 10.1007/s10450-008-9121-1
+variable mass equal 39.962 # 6.636 × 10−26 kg * 1000 * 6.022e23 --> g/mol.
+variable temp equal 84 # K -- T = 0.7 * epsilon / k = 0.7*120 
+
+# The cut off distance between the Ar liquids was 3.5σ (Ar). -- 10.1007/s10450-008-9121-1
+variable cut_off equal 3.5*${sigma}
+variable cut_wca equal 2^(1/6)*${sigma}
+
+# The number density of oxygen in silica is 5.982e28 m−3 (Miyahara et al. 2000) -- 10.1007/s10450-008-9121-1
+variable rho_O equal 0.05982 # A-3
+
+# timestep
+variable dt equal 5 # fs 0.0025*sqrt(6.6e-26*(3.4e-10)^2/1.65e-21) with caracteristic time sqrt(m sigma**2/epsilon) = 
+variable tau equal ${dt}*100
