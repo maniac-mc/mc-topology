@@ -1,11 +1,11 @@
 # LAMMPS Input File (License CC BY 4.0)
 
 # For the Ar liquid, the parameters ε/k and σ were determined as 120.0 K and 0.34 nm, respectively -- 10.1007/s10450-008-9121-1
-variable sigma equal 3.4 # A
-variable epsilon equal 0.238 # 120 K 0.001987 kcal/mol K = 0.238 kcal/mol
+# variable sigma equal 3.4 # A
+# variable epsilon equal 0.238 # 120 K 0.001987 kcal/mol K = 0.238 kcal/mol
 
-# The mass m was 6.636 × 10−26 kg and the reduced temperature T ∗ = kT /ε(Ar) = 0.7 -- 10.1007/s10450-008-9121-1
-variable mass equal 39.962 # 6.636 × 10−26 kg * 1000 * 6.022e23 --> g/mol.
+# # The mass m was 6.636 × 10−26 kg and the reduced temperature T ∗ = kT /ε(Ar) = 0.7 -- 10.1007/s10450-008-9121-1
+# variable mass equal 39.962 # 6.636 × 10−26 kg * 1000 * 6.022e23 --> g/mol.
 variable temp equal 84 # K -- T = 0.7 * epsilon / k = 0.7*120 
 
 # The cut off distance between the Ar liquids was 3.5σ (Ar). -- 10.1007/s10450-008-9121-1
