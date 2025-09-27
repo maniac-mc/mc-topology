@@ -18,6 +18,7 @@ translation_proba 0.4           # Probability of attempting a translation move
 rotation_proba 0.4              # Probability of attempting a rotation move
 big_move_proba 0.0              # Probability of attempting a big move
 insertion_deletion_proba 0.2    # Probability of attempting an insertion or a deletion
+swap_proba 0.2			# Probability of acception a swap
 
 # Define residues composition and activity
 begin_residue
