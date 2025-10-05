@@ -10,9 +10,9 @@ pair_style lj/cut/coul/long 17
 kspace_style ewald 1.0e-5
 kspace_modify kmax/ewald 16 16 16 gewald 0.1622
 
-read_data water.data
+read_data topology.data
 
-include water.inc
+include parameters.inc
 group H2O type 1 2 3
 
 thermo_style custom step pe evdwl ecoul elong
