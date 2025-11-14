@@ -5,12 +5,5 @@
     width="30%" align="right"/>
 </a>
 
-**MANIAC-MC** is a lightweight Monte Carlo simulation code written in Fortran,
-designed for GCMC and adsorption studies. It reads basic LAMMPS-style topology
-files and supports the following Monte Carlo moves:
+This repository contains topologies and force fields compatible with MANIAC-MC and LAMMPS.
 
-- Translation  
-- Rotation  
-- Big jumps  
-- Insertion  
-- Deletion
