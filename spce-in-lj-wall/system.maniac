@@ -14,7 +14,6 @@ translation_step 1              # Translational displacement (angstrom)
 rotation_step_angle 0.685       # Rotational move (radian)
 translation_proba 0.2           # Probability of attempting a translation move
 rotation_proba 0.2              # Probability of attempting a rotation move
-big_move_proba 0.0              # Probability of attempting a big move
 
 # Define residues composition and activity
 begin_residue
