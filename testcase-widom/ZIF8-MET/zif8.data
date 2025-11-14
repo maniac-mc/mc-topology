@@ -6,9 +6,9 @@ LAMMPS data file via write_data, version 22 Jul 2025, timestep = 0, units = real
 7296 dihedrals
 2112 impropers
 
-14 atom types
-12 bond types
-16 angle types
+11 atom types
+10 bond types
+14 angle types
 15 dihedral types
 7 improper types
 
@@ -29,9 +29,6 @@ Masses
 9 1.008    # HC (CH4O)
 10 12.011  # CH (CH4O)
 11 15.9994 # OH (CH4O)
-12 15.999  # OW (H2O)
-13 1.00784 # HW (H2O)
-14 0.0001  # MW (H2O)
 
 Atoms # full
 

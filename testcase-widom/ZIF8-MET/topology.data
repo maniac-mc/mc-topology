@@ -1,11 +1,11 @@
 LAMMPS data file via write_data, version 22 Jul 2025, timestep = 5000, units = real
 
 2238 atoms
-14 atom types
+11 atom types
 2521 bonds
-12 bond types
+10 bond types
 4643 angles
-16 angle types
+14 angle types
 7311 dihedrals
 15 dihedral types
 2112 impropers
@@ -28,9 +28,6 @@ Masses
 9 1.008
 10 12.011
 11 15.9994
-12 15.999
-13 1.00784
-14 0.0001
 
 Atoms # full
 

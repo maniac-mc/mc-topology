@@ -11,9 +11,6 @@ mass 8 1.008    # HO (CH4O)
 mass 9 1.008    # HC (CH4O)
 mass 10 12.011  # CH (CH4O)
 mass 11 15.9994 # OH (CH4O)
-mass 12 15.999  # OW (H2O)
-mass 13 1.00784 # HW (H2O)
-mass 14 0.0001  # MW (H2O)
 
 # pair_coeff
 pair_coeff 1 1 0.0860 3.400     # C1-C1 (Zif8)
@@ -27,9 +24,6 @@ pair_coeff 8 8 0.0000 1.000     # HO-HO (CH4O)
 pair_coeff 9 9 0.0300 2.500     # HC-HC (CH4O)
 pair_coeff 10 10 0.066 3.500    # CH-CH (CH4O)
 pair_coeff 11 11 0.170 3.120    # OH-OH (CH4O)
-pair_coeff 12 12 0.1848 3.165   # OW-OW (H2O)
-pair_coeff 13 13 0.0000 1.000   # HW-HW (H2O)
-pair_coeff 14 14 0.0000 1.000   # MW-MW (H2O)
 
 # bond_coeff
 bond_coeff 1 346.543 1.490          # C1-C3 (Zif8)
@@ -42,8 +36,6 @@ bond_coeff 7 78.500 2.011           # N-Zn (Zif8)
 bond_coeff 8 340.0 1.09             # HC-CH (CH4O)
 bond_coeff 9 320.0 1.41             # CH-OH (CH4O)
 bond_coeff 10 553.0 0.945           # HO-OH (CH4O)
-bond_coeff 11 0.0000 0.9572         # OW-HW (H2O)
-bond_coeff 12 0.0000 0.1050         # OW-MW (H2O)
 
 # angle_coeff
 angle_coeff 1 48.088 109.32         # C1-C3-H3 (Zif8)
@@ -60,8 +52,6 @@ angle_coeff 11 35.240 109.48        # N-Zn-N (Zif8)
 angle_coeff 12 55.000 108.6         # CH-OH-HO (CH4O)
 angle_coeff 13 35.000 109.5         # HC-CH-OH (CH4O)
 angle_coeff 14 33.000 107.8         # HC-CH-HC (CH4O)
-angle_coeff 15 0.0000 104.5200      # HW-OW-HW (H2O)
-angle_coeff 16 0.0000 52.2600       # MW-OW-HW (H2O)
 
 # dihedral_coeff
 
