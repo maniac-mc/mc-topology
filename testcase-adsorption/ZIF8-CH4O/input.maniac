@@ -1,8 +1,8 @@
 # Input for maniac program
 
 # Generic parameters
-nb_block 500                      # number of MC block
-nb_step 200                       # Number of MC step
+nb_block 500                    # number of MC block
+nb_step 200                     # Number of MC step
 temperature	300                 # Temperature in Kelvin
 
 # Electrostatic interactions
@@ -10,14 +10,13 @@ ewald_tolerance 1e-5            # Tolerange long-range ewald
 real_space_cutoff 17            # Cut-off electrostatic
 
 # Monte carlo move
-translation_step 0.5              # Translational displacement (angstrom)
+translation_step 0.5            # Translational displacement (angstrom)
 rotation_step_angle 0.685       # Rotational move (radian)
 recalibrate_moves true          # Enable automatic recalibration of move steps (true/false)
 
 translation_proba 0.4           # Probability of attempting a translation move
 rotation_proba 0.4              # Probability of attempting a rotation move
 insertion_deletion_proba 0.2    # Probability of attempting an insertion or a deletion
-swap_proba 0.0                  # Probability of swapping
 
 # Define residues composition and activity
 begin_residue
@@ -31,7 +30,7 @@ end_residue
 begin_residue
   name moh
   state actif
-  fugacity 1
+  chemical_potential -3     # Chemical potential in kcal/mol
   types 8 9 10 11
   names HO HC CH OH
   nb-atoms 6
