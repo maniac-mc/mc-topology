@@ -14,7 +14,7 @@ translation_step 1              # Translational displacement (angstrom)
 rotation_step_angle 0.685       # Rotational move (radian)
 recalibrate_moves true          # Enable automatic recalibration of move steps (true/false)
 
-translation_proba 0.4           # Probability of attempting a translation move
+translation_proba 0.8           # Probability of attempting a translation move
 rotation_proba 0.0              # Probability of attempting a rotation move
 insertion_deletion_proba 0.2    # Probability of attempting an insertion or a deletion
 
@@ -22,7 +22,7 @@ insertion_deletion_proba 0.2    # Probability of attempting an insertion or a de
 begin_residue
   name fluid
   state actif
-  fugacity 50
+  chemical_potential -3.5
   types 1
   names A
   nb-atoms 1
