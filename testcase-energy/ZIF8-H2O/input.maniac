@@ -19,7 +19,7 @@ rotation_proba 0.4              # Probability of attempting a rotation move
 begin_residue
   name wat
   state actif
-  fugacity 10000
+  chemical_potential -5
   types 1 2 3
   names Ow Mw Hw 
   nb-atoms 4

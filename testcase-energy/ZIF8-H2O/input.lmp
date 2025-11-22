@@ -11,8 +11,8 @@ kspace_style ewald 1.0e-5
 kspace_modify kmax/ewald 5 5 5 gewald 0.1622
 # special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 0.833
 
-read_data zif8-water.data
-include zif8-water.inc
+read_data topology.data
+include parameters.inc
 
 group H2O type 1 2 3
 group ZIF type 4 5 6 7 8 9 10 11
