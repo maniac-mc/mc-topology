@@ -1,0 +1,6 @@
+.github/COMMENT.md
+.github/BADGES.md
+DESCRIPTION.md
+.github/MANIAC.md
+.github/NAME.md
+.github/AUTHORS.md
