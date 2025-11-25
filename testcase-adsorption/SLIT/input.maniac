@@ -22,7 +22,7 @@ insertion_deletion_proba 0.2    # Probability of attempting an insertion or a de
 begin_residue
   name fluid
   state actif
-  chemical_potential -6.0
+  chemical_potential -3.0
   types 1
   names A
   nb-atoms 1
