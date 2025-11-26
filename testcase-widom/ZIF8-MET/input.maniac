@@ -32,7 +32,6 @@ end_residue
 begin_residue
   name moh
   state actif
-  fugacity 0.04
   types 8 9 10 11
   names HO HC CH OH
   nb-atoms 6
