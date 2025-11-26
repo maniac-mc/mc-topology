@@ -19,7 +19,6 @@ rotation_proba 0.4              # Probability of attempting a rotation move
 begin_residue
   name A
   state actif
-  fugacity 1000
   types 1
   names A
   nb-atoms 1

@@ -15,13 +15,11 @@ rotation_step_angle 0.685       # Rotational move (radian)
 recalibrate_moves false         # Enable automatic recalibration of move steps (true/false)
 translation_proba 0.5           # Probability of attempting a translation move
 rotation_proba 0.5              # Probability of attempting a rotation move
-insertion_deletion_proba 0.2    # Probability of attempting an insertion or a deletion
 
 # Define residues composition and activity
 begin_residue
     name wat
     state actif
-    fugacity 0.5                # atmosphere
     types 1 2 3
     names Ow Mw Hw 
     nb-atoms 4
