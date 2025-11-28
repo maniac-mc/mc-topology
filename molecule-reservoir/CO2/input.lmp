@@ -1,6 +1,6 @@
 # LAMMPS input file (License CC BY 4.0)
 
-variable number equal 1
+variable number equal 50
 variable seed equal 87669
 
 units real
