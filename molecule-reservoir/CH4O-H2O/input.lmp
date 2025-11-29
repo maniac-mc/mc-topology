@@ -42,4 +42,4 @@ thermo_style custom step temp etotal vol density
 
 run 200
 
-write_data topology.data
+write_data topology.data nocoeff
