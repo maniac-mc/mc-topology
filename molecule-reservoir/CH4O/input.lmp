@@ -30,7 +30,8 @@ group ch4o type 8 9 10 11
 
 include parameters.inc
 
-fix mynvt1 ch4o nvt temp 298.15 298.15 100.0
+velocity ch4o create 300.0 4928459 rot yes dist gaussian
+fix mynvt1 ch4o nvt temp 300.0 300.0 10.0
 
 dump mydmp all atom 100 dump.lammpstrj
 thermo 10
@@ -38,4 +39,4 @@ thermo_style custom step temp etotal vol density
 
 run 200
 
-write_data topology.data
+write_data topology.data nocoeff
