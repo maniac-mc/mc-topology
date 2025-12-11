@@ -1,0 +1,50 @@
+# LAMMPS Input File (License CC BY 4.0)
+
+variable seed equal 87669
+
+include header.lmp
+
+# 1) Initialization
+units real
+dimension 3
+atom_style full
+boundary p p p
+
+pair_style lj/cut ${cut_off}
+pair_modify shift yes
+
+read_data empty-pore.data
+include parameters.inc
+
+create_atoms 1 random 50 12345 NULL overlap 2.0 maxtry 50
+
+group fluid type 1
+group wall type 2
+neigh_modify exclude group wall wall
+
+compute tfluid fluid temp
+
+fix mynvt fluid nvt temp ${temp} ${temp} ${tau}
+fix_modify mynvt temp tfluid
+
+variable pressure equal press
+fix myat4 all ave/time 100 20 2000 v_pressure file lammps_pressure.dat
+
+variable etotal equal etotal
+fix myat5 all ave/time 100 20 2000 v_etotal file lammps_etotal.dat
+
+variable enthalpy equal enthalpy
+fix myat6 all ave/time 100 20 2000 v_enthalpy file lammps_enthalpy.dat
+
+variable myfluid atom "type==1"
+group myfluid dynamic all var myfluid
+variable n_fluid equal count(myfluid)
+fix myat1 all ave/time 2000 1 2000 v_n_fluid file lammps_nb.dat
+
+thermo 2000
+thermo_modify temp tfluid
+dump mydmp all atom 2000 dump.lammpstrj
+
+timestep ${dt}
+run 20000
+write_data topology.data nocoeff
